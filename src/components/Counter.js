@@ -5,6 +5,7 @@ import classes from './Counter.module.css';
 function Counter() {
   const dispatch = useDispatch();
   const counter = useSelector(state => state.counter);
+  const show = useSelector(state => state.showCounter);
 
   function incrementHandler() {
     dispatch({ type: "INCREMENT" });
@@ -19,13 +20,13 @@ function Counter() {
   }
 
   function toggleCounterHandler() {
-
+    dispatch({ type: "TOGGLE" });
   }
 
   return (
     <main className={classes.counter}>
       <h1>Redux Counter</h1>
-      <div className={classes.value}>{counter}</div>
+      {show ? <div className={classes.value}>{counter}</div>: null} 
       <div>
         <button onClick={incrementHandler}>Increment</button>
         <button onClick={increaseHandler}>Increase by 5</button>
